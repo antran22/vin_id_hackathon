@@ -11,9 +11,11 @@
         "eslint": "^6.3.0",
         "eslint-config-airbnb-base": "^14.0.0",
         "eslint-config-prettier": "^6.2.0",
-        "eslint-plugin-import": "^2.18.2"
+        "eslint-plugin-import": "^2.18.2",
+        "nodemon": "^1.19.2"
     },
     "scripts": {
+        "dev": "nodemon --exec babel-node src/index.js\n",
         "build": "babel --presets es2015 -d lib/ src"
     },
     "dependencies": {
