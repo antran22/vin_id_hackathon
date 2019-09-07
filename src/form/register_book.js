@@ -9,7 +9,7 @@ function register_book(bookId) {
                     label: "Đồng ý",
                     background_color: "#6666ff",
                     cta: "request",
-                    url: `https://aldermann.serveo.net/add_book?book_id=${bookId}`,
+                    url: `${process.env.URL}/add_book?book_id=${bookId}`,
                 },
                 elements: [
                     {

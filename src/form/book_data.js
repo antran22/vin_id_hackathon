@@ -9,7 +9,7 @@ function bookData({ bookId, bookTitle, bookImage }, isPaid) {
                     label: isPaid ? "Thêm vào tủ sách" : "Mua sách",
                     background_color: "#6666ff",
                     cta: "request",
-                    url: `https://aldermann.serveo.net/register_book?book_id=${bookId}`,
+                    url: `${process.env.URL}/register_book?book_id=${bookId}`,
                 },
                 elements: [
                     {
@@ -19,7 +19,7 @@ function bookData({ bookId, bookTitle, bookImage }, isPaid) {
                     },
                     {
                         type: "web",
-                        content: `<img src='${bookImage}' alt="${bookTitle}"/>`,
+                        content: `<div style="text-align: center"><img src='${bookImage}' alt="${bookTitle}"/></div>`,
                     },
                     {
                         type: "checkbox",

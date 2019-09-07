@@ -9,7 +9,7 @@ function read_book(book_id) {
                     label: "Xem sách",
                     background_color: "#6666ff",
                     cta: "url",
-                    url: `https://aldermann.serveo.com/read_book?book_id=${book_id}`
+                    url: `${process.env.URL}/read_book?book_id=${book_id}`
                 },
                 // elements: [
                 //     {

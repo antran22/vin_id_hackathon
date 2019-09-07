@@ -9,7 +9,7 @@ function signUp(bookId) {
                     label: "Đăng ký",
                     background_color: "#6666ff",
                     cta: "request",
-                    url: `https://aldermann.serveo.net/sign_up?book_id=${bookId}`,
+                    url: `${process.env.URL}/sign_up?book_id=${bookId}`,
                 },
                 elements: [
                     {
