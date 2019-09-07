@@ -21,6 +21,20 @@ function bookData({ bookId, bookTitle, bookImage }, isPaid) {
                         type: "web",
                         content: `<img src='${bookImage}' alt="${bookTitle}"/>`,
                     },
+                    {
+                        type: "checkbox",
+                        display_type: "inline",
+                        required: true,
+                        label: "Bạn có đồng ý với các điều khoản ở đây không?",
+                        name: "agreement",
+                        error: "Bạn chưa đồng ý với các điều khoản",
+                        options: [
+                            {
+                                label: "Có",
+                                value: "yes",
+                            },
+                        ],
+                    },
                 ],
             },
         },

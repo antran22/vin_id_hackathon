@@ -14,6 +14,7 @@ const UserSchema = mongoose.Schema({
     },
     owned_book : {
         type: Array,
+        default: []
     },
     phone: {
         type: String

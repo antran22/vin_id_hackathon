@@ -13,13 +13,18 @@ function register_book(bookId) {
                 },
                 elements: [
                     {
-                        type: "text",
-                        style: "heading",
-                        content: bookTitle,
-                    },
-                    {
-                        type: "web",
-                        content: `<img src='${bookImage}' alt="${bookTitle}"/>`,
+                        type: "checkbox",
+                        display_type: "inline",
+                        required: true,
+                        label: "Đồng ý",
+                        name: "agreement",
+                        error: "Bạn chưa đồng ý với các điều khoản",
+                        options: [
+                            {
+                                label: "",
+                                value: "yes",
+                            },
+                        ],
                     },
                 ],
             },
@@ -27,4 +32,4 @@ function register_book(bookId) {
     };
 }
 
-export default bookData;
+export default register_book;
