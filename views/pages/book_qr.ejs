@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ../partials/head.ejs %>
+<body>
+<% include ../partials/header.ejs %>
+<main>
+    <div class="jumbotron">
+        <h1>Books QR</h1>
+        <div style="display: flex; flex-flow: row wrap; justify-content: center; align-items: flex-start">
+            <% for (const code of codes) { %>
+                <div style="text-align: center; display: flex; flex-direction: column; margin: 20px">
+                    <img src="<%= code.image %>" alt="QR Code">
+                    <div style="width: 196px">
+                    <b><%=code.book.title%></b>
+                    <i><%=code.book.author%></i>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</main>
+<% include ../partials/footer.ejs %>
+</body>
+</html>
