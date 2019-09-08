@@ -1,9 +1,9 @@
-version: "2"
+version: "3"
 services:
   app:
     container_name: app
+    build: ./
     restart: always
-    build: .
     ports:
       - "3000:3000"
     links:
@@ -12,9 +12,5 @@ services:
     container_name: mongo
     restart: always
     image: mongo
-    volumes:
-      - ./data:/data/db
-      - ./import_db:/import_db
-    command: mongoimport -d vin_id -c books --type csv --file /import_db/books_2.csv --headerline
     ports:
       - "27017:27017"
