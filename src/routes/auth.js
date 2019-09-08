@@ -10,7 +10,9 @@ router.get("/", async (req, res) => {
 });
 router.post("/login", async (req, res) => {
     const { password, phone } = req.body;
-    console.log(password, phone);
+    if (!password || !phone) {
+        res.status(401).send("<h1>Số điện thoại hoặc mật khẩu sai</h1>")
+    }
     const user = await User.findOne({ phone });
     if (!user) {
         res.status(401).send("<h1>Không tồn tại user</h1>");
@@ -29,6 +31,7 @@ router.post("/login", async (req, res) => {
             .cookie("vin_id", user.vin_id)
             .redirect("../");
     }
+    res.status(401).send("<h1>Số điện thoại hoặc mật khẩu sai</h1>")
 });
 
 export default router;
