@@ -1,4 +1,4 @@
-function read_book(book_id) {
+function read_book(book_id, vin_id, session) {
     return {
         data: {
             metadata: {
@@ -9,7 +9,7 @@ function read_book(book_id) {
                     label: "Xem sách",
                     background_color: "#6666ff",
                     cta: "url",
-                    url: `${process.env.URL}/read_book?book_id=${book_id}`
+                    url: `${process.env.URL}/launch_web?book_id=${book_id}&vin_id=${vin_id}&session=${session}`
                 },
                 // elements: [
                 //     {

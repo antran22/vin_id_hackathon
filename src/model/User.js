@@ -5,6 +5,10 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
     },
+    hashed: {
+        type: Boolean,
+        default: false,
+    },
     name: {
         type: String,
     },
@@ -12,28 +16,29 @@ const UserSchema = mongoose.Schema({
         type: String,
         index: true,
     },
-    owned_book : {
+    owned_book: {
         type: Array,
-        default: []
+        default: [],
     },
     phone: {
-        type: String
-    }
+        type: String,
+    },
 });
 
 async function preSave(next) {
-    if (!this.password) {
+    if (!this.password || this.hashed) {
         return;
     }
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
+    this.hashed = true;
     next();
 }
 
 UserSchema.pre("save", preSave);
-UserSchema.methods.comparePassword = async function comparePassword(password) {
-    return bcrypt.compare(password, this.password);
-};
+export async function comparePassword(password, user) {
+    return bcrypt.compare(password, user.password);
+}
 
 const User = mongoose.model("User", UserSchema);
 export default User;

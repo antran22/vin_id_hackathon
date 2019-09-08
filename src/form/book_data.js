@@ -9,7 +9,7 @@ function bookData({ bookId, bookTitle, bookImage }, isPaid) {
                     label: isPaid ? "Thêm vào tủ sách" : "Mua sách",
                     background_color: "#6666ff",
                     cta: "request",
-                    url: `${process.env.URL}/register_book?book_id=${bookId}`,
+                    url: `${process.env.URL}/hook/register_book?book_id=${bookId}`,
                 },
                 elements: [
                     {

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ../partials/head.ejs %>
+<body>
+<% include ../partials/header.ejs %>
+<style>
+    .scrolled {
+        display: flex;
+        overflow: hidden;
+        width: 800px;
+        margin: 0 auto;
+        position: relative;
+        box-shadow: 0 0 4px #ccc;
+        padding: 20px;
+        background: white;
+    }
+
+    .navlink {
+        flex: 1;
+        flex-basis: 50px;
+        display: flex;
+        justify-content: center;
+        margin: 0 4px;
+        font-size: 50px;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+        color: #ccc;
+    }
+    #prev {
+        background: linear-gradient(to left, gray, lightgray)
+    }
+    #next {
+        background: linear-gradient(to right, gray, lightgray)
+    }
+</style>
+<main>
+    <div style="display:flex; justify-content: space-around; align-items: stretch">
+        <div id="prev" class="navlink">
+            <a id="prev_text" href="#prev">...</a>
+        </div>
+        <div id="viewer" class="scrolled"></div>
+        <div id="next" class="navlink">
+            <a id="next_text" href="#next">...</a>
+        </div>
+    </div>
+    <script>
+        // Load the opf
+        const book = ePub("<%= path %>");
+        const rendition = book.renderTo("viewer", {
+            width: "100%",
+            height: "90vh",
+            spread: "always"
+        });
+        rendition.display();
+        const next = document.getElementById("next");
+        next.addEventListener("click", function (e) {
+            rendition.next();
+            e.preventDefault();
+        }, false);
+        const prev = document.getElementById("prev");
+        prev.addEventListener("click", function (e) {
+            rendition.prev();
+            e.preventDefault();
+        }, false);
+        rendition.on("relocated", function (location) {
+            const nextText = document.getElementById("next_text");
+            console.log(location);
+            if (!location.atEnd) {
+                next.style.visibility = "visible";
+                nextText.textContent = ">";
+            } else {
+                next.style.visibility = "hidden";
+                nextText.textContent = "";
+            }
+            const prevText = document.getElementById("prev_text");
+            if (!location.atStart) {
+                prev.style.visibility = "visible";
+                prevText.textContent = "<";
+            } else {
+                prev.style.visibility = "hidden";
+                prevText.textContent = "";
+            }
+        });
+
+    </script>
+</main>
+<% include ../partials/footer.ejs %>
+</body>
+</html>
