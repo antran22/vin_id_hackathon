@@ -4,22 +4,23 @@
 <body>
 <% include ../partials/header.ejs %>
 <main>
-    <form class="form-signin">
+    <h1>To signup, scan any QR Code</h1>
+    <form class="form-signin" action="/auth/login" method="POST">
         <div class="form-label-group">
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputEmail">Email address</label>
+            <input type="tel" name="phone" class="form-control" placeholder="Phone" required autofocus>
+            <label for="phone">Số điện thoạir</label>
         </div>
 
         <div class="form-label-group">
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <label for="inputPassword">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+            <label for="password">Mật khẩu</label>
         </div>
 
         <div class="custom-control custom-checkbox mb-3">
             <input type="checkbox" class="custom-control-input" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1">Remember password</label>
+            <label class="custom-control-label" for="customCheck1">Nhớ mật khẩu</label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Đăng nhập</button>
         <hr class="my-4">
     </form>
 </main>

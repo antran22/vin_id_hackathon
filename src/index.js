@@ -8,6 +8,8 @@ import dotenv from "dotenv";
 import hookRouter from "./routes/qr_hook";
 import qrListRouter from "./routes/qr_gen";
 import viewBookRouter from "./routes/view_book";
+import ownedBookRouter from "./routes/owned_book";
+import authRouter from "./routes/auth";
 import Session from "./model/Session";
 import User from "./model/User";
 
@@ -46,9 +48,9 @@ app.use(async (req, res, next) => {
                 loggedIn: false,
                 createdAt: new Date(),
             });
-            req.user = user;
             await req.session.save();
         }
+        req.user = user;
     }
     next();
 });
@@ -62,8 +64,11 @@ app.use((req, res, next) => {
 });
 app.use("/gen", qrListRouter);
 app.use("/view", viewBookRouter);
+app.use("/auth", authRouter);
+app.use("/list", ownedBookRouter);
 app.get("/", (req, res) => {
-    res.render("pages/index", {user: req.user});
+    console.log(req.user);
+    res.render("pages/index", { user: req.user });
 });
 
 app.listen(3000, () => console.log("Listening at 3000"));

@@ -51,13 +51,28 @@ router.post("/sign_in", async (req, res) => {
         res.json(register_book(book_id));
         return;
     }
-    res.status(401).send("Error");
+    res.status(404).json({
+        meta: {
+            code: 404,
+            message: "Sai mật khẩu",
+        },
+    });
 });
 
 router.post("/sign_up", async (req, res) => {
     const { name, password, phone } = req.body;
     const { book_id } = req.query;
     if ((await User.count({ vin_id: req.headers.user_id })) <= 0) {
+        console.log(phone, await User.find({phone}));
+        if (User.count({ phone }) > 0) {
+            res.status(404).json({
+                meta: {
+                    code: 404,
+                    message: "Số điện thoại này đã tồn tại",
+                },
+            });
+            return;
+        }
         const user = new User({
             password,
             name,
@@ -77,7 +92,7 @@ router.post("/sign_up", async (req, res) => {
 router.post("/add_book", async (req, res) => {
     const { book_id } = req.query;
     const vin_id = req.headers.user_id;
-    const {session} = req.headers;
+    const { session } = req.headers;
     const user = await User.findOne({ vin_id });
     if (!req.session.loggedIn) {
         if (user) res.redirect(`/sign_in?book_id=${book_id}`);
