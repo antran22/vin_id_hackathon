@@ -8,8 +8,8 @@ router.get("/", async (req, res) => {
         res.redirect("../auth/signin");
         return;
     }
-    const books = await Book.find({ book_id: { $in: req.user.owned_book } });
-    res.render("pages/owned_book", { books, user: req.user });
+    let books = await Book.find({ book_id: { $in: req.user.owned_book } });
+    res.render("pages/owned_book", { books: books, user: req.user });
 });
 
 export default router;
