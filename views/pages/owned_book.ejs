@@ -7,7 +7,7 @@
     <div style="display: flex; justify-content: center; align-items: center">
         <% for (book of books) { %>
             <% const link = book.img_link || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcAuCz3QceLQdk9Oxxxul233aJUoJTBDnYSID8u2C7l4dZKuDW" %>
-            <div style="display: flex; flex-flow: column nowrap; align-items: center; padding: 10px;">
+            <div style="display: flex; flex-flow: column wrap; align-items: center; padding: 10px;">
                 <img style="background-size: contain" src="<%= link %>"
                      alt="<%= book.title %>"/>
                 <a style="width: 60%" href="/view/epub?book_id=<%= book.book_id %>"><%= book.title %></a>

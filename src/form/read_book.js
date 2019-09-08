@@ -11,22 +11,22 @@ function read_book(book_id, vin_id, session) {
                     cta: "url",
                     url: `${process.env.URL}/launch_web?book_id=${book_id}&vin_id=${vin_id}&session=${session}`
                 },
-                // elements: [
-                //     {
-                //         type: "checkbox",
-                //         display_type: "inline",
-                //         required: true,
-                //         label: "Đồng ý",
-                //         name: "agreement",
-                //         error: "Bạn chưa đồng ý với các điều khoản",
-                //         options: [
-                //             {
-                //                 label: "",
-                //                 value: "yes",
-                //             },
-                //         ],
-                //     },
-                // ],
+                elements: [
+                    {
+                        type: "checkbox",
+                        display_type: "inline",
+                        required: true,
+                        label: "Đồng ý",
+                        name: "agreement",
+                        error: "Bạn chưa đồng ý với các điều khoản",
+                        options: [
+                            {
+                                label: "",
+                                value: "yes",
+                            },
+                        ],
+                    },
+                ],
             },
         },
     };
