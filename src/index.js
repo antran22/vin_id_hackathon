@@ -1,12 +1,12 @@
 import "./config";
 import express from "express";
 import bodyParser from "body-parser";
-import httpContext from "express-http-context";
 // import session from "express-session";
 import cookie from "cookie-parser";
 import dotenv from "dotenv";
-import hookRouter from "./routes/qr_hook";
-import qrListRouter from "./routes/qr_gen";
+import bookHookRouter from "./routes/book_hook";
+import pizzaHookRouter from "./routes/pizza_hook";
+import qrGenRouter from "./routes/qr_gen";
 import viewBookRouter from "./routes/view_book";
 import ownedBookRouter from "./routes/owned_book";
 import authRouter from "./routes/auth";
@@ -56,18 +56,14 @@ app.use(async (req, res, next) => {
 });
 
 app.use("/static", express.static("static"));
-app.use(httpContext.middleware);
 app.set("view engine", "ejs");
-app.use("/hook", hookRouter);
-app.use((req, res, next) => {
-    next();
-});
-app.use("/gen", qrListRouter);
+app.use("/hook", bookHookRouter);
+app.use("/hook", pizzaHookRouter);
+app.use("/qr", qrGenRouter);
 app.use("/view", viewBookRouter);
 app.use("/auth", authRouter);
 app.use("/list", ownedBookRouter);
 app.get("/", (req, res) => {
-    console.log(req.user);
     res.render("pages/index", { user: req.user });
 });
 

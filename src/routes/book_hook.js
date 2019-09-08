@@ -1,11 +1,11 @@
 import Book from "../model/Book";
-import bookData from "../form/book_data";
+import bookData from "../form/book/book_data";
 import User, { comparePassword } from "../model/User";
-import signUp from "../form/sign_up";
-import register_book from "../form/register_book";
-import read_book from "../form/read_book";
+import signUp from "../form/book/sign_up";
+import register_book from "../form/book/register_book";
+import read_book from "../form/book/read_book";
 import { Router } from "express";
-import signIn from "../form/sign_in";
+import signIn from "../form/book/sign_in";
 
 const router = Router();
 

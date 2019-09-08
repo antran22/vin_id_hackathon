@@ -13,18 +13,10 @@ function read_book(book_id, vin_id, session) {
                 },
                 elements: [
                     {
-                        type: "checkbox",
-                        display_type: "inline",
-                        required: true,
-                        label: "Đồng ý",
-                        name: "agreement",
-                        error: "Bạn chưa đồng ý với các điều khoản",
-                        options: [
-                            {
-                                label: "",
-                                value: "yes",
-                            },
-                        ],
+                        type: "input",
+                        input_type: "textarea",
+                        label: "Phản hồi về trải nghiệm",
+                        name: "feedback",
                     },
                 ],
             },
