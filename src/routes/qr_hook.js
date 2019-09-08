@@ -98,8 +98,10 @@ router.post("/add_book", async (req, res) => {
         if (user) res.redirect(`/sign_in?book_id=${book_id}`);
         else res.redirect(`/sign_up?book_id=${book_id}`);
     }
-    user.owned_book = [...user.owned_book, book_id];
-    await user.save();
+    if (user.owned_book.indexOf(book_id) === -1) {
+        user.owned_book = [...user.owned_book, book_id];
+        await user.save();
+    }
     res.json(read_book(book_id, vin_id, session));
 });
 
